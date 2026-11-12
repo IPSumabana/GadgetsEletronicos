@@ -404,7 +404,7 @@ export const Navbar: React.FC = () => {
                   ) : (
                     <div className="p-2 space-y-2">
                       <p className="text-xs text-slate-300">
-                        Inicie sessão para gerir as suas encomendas em Moçambique.
+                        Inicie sessão para gerir as suas encomendas.
                       </p>
                       <button
                         onClick={() => {
