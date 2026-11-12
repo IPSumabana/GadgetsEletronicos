@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #080c14;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom glow and accent styling */
+.tech-glow-blue {
+  box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.45);
+}
+
+.tech-glow-purple {
+  box-shadow: 0 0 25px -5px rgba(147, 51, 234, 0.45);
+}
+
+.tech-border-glow {
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tech-border-glow:hover {
+  border-color: rgba(96, 165, 250, 0.8);
+  box-shadow: 0 0 20px -2px rgba(59, 130, 246, 0.35);
+}
+
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dropdown {
+  background: rgba(11, 17, 30, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080c14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
