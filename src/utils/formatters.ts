@@ -1,5 +1,5 @@
-export const WHATSAPP_PHONE_NUMBER = '258849900110'; // WhatsApp oficial GADGETSZONE Moçambique
-export const WHATSAPP_DISPLAY = '+258 84 990 0110';
+export const WHATSAPP_PHONE_NUMBER = '258823441439'; // WhatsApp oficial GADGETSZONE Moçambique
+export const WHATSAPP_DISPLAY = '+258 82 344 1439';
 export const STORE_EMAIL = 'contacto@gadgetszone.co.mz';
 export const STORE_LOCATION = 'Av. 24 de Julho nº 1420, Polana Cimento, Maputo, Moçambique';
 

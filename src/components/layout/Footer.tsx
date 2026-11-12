@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
             <div>
               <h4 className="font-bold text-white text-sm">Entregas em Maputo/Matola</h4>
               <p className="text-slate-400 text-xs mt-0.5">
-                
+                Entregas rápidas no próprio dia ou 24h na Grande Maputo e Matola.
               </p>
             </div>
           </div>

@@ -65,7 +65,7 @@ export const HomePage: React.FC = () => {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-blue-600/20 via-indigo-600/15 to-purple-600/20 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <div className="max-w-7xl mx-auto">
-          <div className="relative rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-blue-950/40 border border-slate-800/80 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
+          <div className="relative rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-blue-950/40 border border-slate-800/80 p-5 sm:p-10 lg:p-16 shadow-2xl overflow-hidden">
             {/* Background Grid Pattern */}
             <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.08]" />
 

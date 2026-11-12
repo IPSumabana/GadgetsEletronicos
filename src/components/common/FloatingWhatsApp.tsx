@@ -26,7 +26,7 @@ export const FloatingWhatsApp: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end">
+    <div className="fixed bottom-20 md:bottom-5 right-4 md:right-5 z-40 flex flex-col items-end">
       {/* Floating Popup window */}
       {isOpen && (
         <div className="mb-3 w-80 sm:w-96 rounded-3xl bg-slate-900 border border-emerald-500/40 p-5 shadow-2xl backdrop-blur-xl animate-in slide-in-from-bottom-5 text-xs text-slate-200">

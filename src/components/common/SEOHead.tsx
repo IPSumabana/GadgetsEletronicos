@@ -106,7 +106,7 @@ export const SEOHead: React.FC = () => {
       {/* Floating SEO & Marketing Inspector Button (Discreet badge at bottom-left) */}
       <button
         onClick={() => setShowSeoModal(true)}
-        className="fixed bottom-4 left-4 z-40 p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-400 hover:text-blue-400 transition-all shadow-xl backdrop-blur-md flex items-center gap-1.5 text-xs font-semibold"
+        className="fixed bottom-20 md:bottom-4 left-4 z-40 p-2.5 rounded-full bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-400 hover:text-blue-400 transition-all shadow-xl backdrop-blur-md flex items-center gap-1.5 text-xs font-semibold"
         title="Ver SEO Técnico, Metadados & Tags"
       >
         <Globe className="w-3.5 h-3.5 text-blue-400" />

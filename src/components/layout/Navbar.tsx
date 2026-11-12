@@ -20,7 +20,7 @@ import {
   Check,
 } from 'lucide-react';
 import { useStore, NavigationPage } from '../../context/StoreContext';
-import { formatMZN, WHATSAPP_DISPLAY, generateWhatsAppOrderLink } from '../../utils/formatters';
+import { formatMZN, WHATSAPP_DISPLAY, WHATSAPP_PHONE_NUMBER, generateWhatsAppOrderLink } from '../../utils/formatters';
 import { CATEGORIES } from '../../data/mockData';
 
 export const Navbar: React.FC = () => {
@@ -116,7 +116,7 @@ export const Navbar: React.FC = () => {
 
           <div className="flex items-center gap-4 text-slate-400">
             <a
-              href="https://wa.me/258849900110"
+              href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-emerald-400 flex items-center gap-1.5 font-medium transition-colors"

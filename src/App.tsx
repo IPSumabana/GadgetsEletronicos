@@ -7,6 +7,7 @@ import { ToastContainer } from './components/common/ToastContainer';
 import { AbandonedCartModal } from './components/common/AbandonedCartModal';
 import { CookieConsent } from './components/common/CookieConsent';
 import { FloatingWhatsApp } from './components/common/FloatingWhatsApp';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { SEOHead } from './components/common/SEOHead';
 
 // Pages
@@ -90,12 +91,15 @@ const AppContent: React.FC = () => {
       <Navbar />
 
       {/* Page Content View */}
-      <main className="flex-1">
+      <main className="flex-1 pb-16 md:pb-0">
         {renderCurrentPage()}
       </main>
 
       {/* Footer */}
       <Footer />
+
+      {/* Mobile Bottom Navigation Bar */}
+      <MobileBottomNav />
 
       {/* Global Modals & Floating Interactive Elements */}
       <QuickViewModal />
