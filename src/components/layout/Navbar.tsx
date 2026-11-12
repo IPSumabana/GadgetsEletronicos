@@ -156,7 +156,7 @@ export const Navbar: React.FC = () => {
                 </span>
               </div>
               <p className="text-[10px] text-slate-400 tracking-wider uppercase font-semibold">
-                Tecnologia de Vanguarda
+              
               </p>
             </div>
           </div>
