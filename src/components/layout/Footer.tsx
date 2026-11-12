@@ -43,9 +43,9 @@ export const Footer: React.FC = () => {
               <Truck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-bold text-white text-sm">Entregas em Moçambique</h4>
+              <h4 className="font-bold text-white text-sm">Entregas em Maputo/Matola</h4>
               <p className="text-slate-400 text-xs mt-0.5">
-                Mesmo dia em Maputo e Matola; envios diários para todas as províncias.
+                
               </p>
             </div>
           </div>
@@ -352,7 +352,7 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-4">
             <span>Desenvolvido com foco no consumidor de Moçambique</span>
             <a
-              href="https://wa.me/258849900110"
+              href="https://wa.me/258823441439"
               target="_blank"
               rel="noopener noreferrer"
               className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
