@@ -1,15 +1,12 @@
 import React from 'react';
 import {
   CheckCircle2,
-  Package,
   Printer,
   MessageCircle,
   Truck,
   ArrowRight,
   ExternalLink,
-  ShieldCheck,
   MapPin,
-  Calendar,
 } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import {
@@ -27,12 +24,12 @@ export const OrderConfirmationPage: React.FC = () => {
   if (!order) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-xl font-bold text-white mb-4">
+        <h2 className="text-xl font-bold text-slate-900 mb-4">
           Nenhuma encomenda encontrada.
         </h2>
         <button
           onClick={() => setCurrentPage('shop')}
-          className="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs"
+          className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs"
         >
           Ir para a Loja
         </button>
@@ -48,20 +45,20 @@ export const OrderConfirmationPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
       {/* 1. Success Hero Box */}
       <div className="text-center space-y-4">
-        <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-2xl shadow-emerald-600/30">
+        <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-xl shadow-emerald-600/20">
           <CheckCircle2 className="w-10 h-10" />
         </div>
 
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-emerald-300 bg-emerald-950/60 border border-emerald-800/60">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200">
           Encomenda Registada com Sucesso!
         </span>
 
-        <h1 className="text-3xl sm:text-4xl font-black text-white">
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
           Obrigado, {order.customerName.split(' ')[0]}!
         </h1>
 
-        <p className="text-sm text-slate-300 max-w-lg mx-auto">
-          A sua encomenda <strong className="text-blue-400">#{order.id}</strong> foi recebida no nosso sistema. Enviámos a confirmação detalhada para o e-mail <strong className="text-white">{order.email}</strong>.
+        <p className="text-sm text-slate-600 max-w-lg mx-auto">
+          A sua encomenda <strong className="text-blue-700">#{order.id}</strong> foi recebida no nosso sistema. Enviámos a confirmação detalhada para o e-mail <strong className="text-slate-900">{order.email}</strong>.
         </p>
 
         {/* Action Buttons */}
@@ -76,7 +73,7 @@ export const OrderConfirmationPage: React.FC = () => {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 shadow-xl shadow-emerald-600/25 transition-all"
+            className="px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 transition-all"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Confirmar Encomenda no WhatsApp</span>
@@ -85,15 +82,15 @@ export const OrderConfirmationPage: React.FC = () => {
 
           <button
             onClick={() => setCurrentPage('order-tracking')}
-            className="px-5 py-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs flex items-center gap-2 border border-slate-700 transition-all"
+            className="px-5 py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs flex items-center gap-2 border border-slate-300 transition-all"
           >
-            <Truck className="w-4 h-4 text-blue-400" />
+            <Truck className="w-4 h-4 text-blue-600" />
             <span>Rastrear Esta Encomenda</span>
           </button>
 
           <button
             onClick={handlePrint}
-            className="px-4 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-xs flex items-center gap-2 border border-slate-800 transition-colors"
+            className="px-4 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center gap-2 border border-slate-200 transition-colors"
           >
             <Printer className="w-4 h-4" />
             <span>Imprimir Recibo Pró-forma</span>
@@ -102,22 +99,22 @@ export const OrderConfirmationPage: React.FC = () => {
       </div>
 
       {/* 2. Order Details Invoice-style Card */}
-      <div className="rounded-3xl bg-slate-900/60 border border-slate-800 p-6 sm:p-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+      <div className="rounded-3xl bg-white border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
               Número da Encomenda
             </span>
-            <span className="text-2xl font-black text-white font-mono">
+            <span className="text-2xl font-black text-slate-900 font-mono">
               #{order.id}
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-600">
               Data: {formatDate(order.createdAt)}
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-950/60 text-amber-300 border border-amber-800/60 uppercase">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200 uppercase">
               Estado: {order.status}
             </span>
           </div>
@@ -125,46 +122,46 @@ export const OrderConfirmationPage: React.FC = () => {
 
         {/* Delivery & Payment details grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1.5">
-            <h4 className="font-bold text-white text-xs flex items-center gap-1.5 mb-2">
-              <MapPin className="w-4 h-4 text-blue-400" />
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+            <h4 className="font-bold text-slate-900 text-xs flex items-center gap-1.5 mb-2">
+              <MapPin className="w-4 h-4 text-blue-600" />
               <span>Morada de Entrega em Moçambique:</span>
             </h4>
-            <div className="text-slate-300 font-medium">{order.customerName}</div>
-            <div className="text-slate-400">{order.phone} | {order.email}</div>
-            <div className="text-slate-300">{order.address}</div>
-            <div className="text-slate-400 font-semibold">{order.city}, {order.province}</div>
+            <div className="text-slate-800 font-medium">{order.customerName}</div>
+            <div className="text-slate-600">{order.phone} | {order.email}</div>
+            <div className="text-slate-700">{order.address}</div>
+            <div className="text-slate-600 font-semibold">{order.city}, {order.province}</div>
             {order.notes && (
-              <div className="text-slate-500 italic mt-2">Obs: "{order.notes}"</div>
+              <div className="text-slate-500 italic mt-2">Obs: &ldquo;{order.notes}&rdquo;</div>
             )}
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1.5">
-            <h4 className="font-bold text-white text-xs flex items-center gap-1.5 mb-2">
-              <Truck className="w-4 h-4 text-emerald-400" />
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+            <h4 className="font-bold text-slate-900 text-xs flex items-center gap-1.5 mb-2">
+              <Truck className="w-4 h-4 text-emerald-600" />
               <span>Método de Pagamento & Envio:</span>
             </h4>
-            <div className="text-slate-300">
-              <strong className="text-white">Pagamento:</strong> {order.paymentMethod.toUpperCase()}
+            <div className="text-slate-700">
+              <strong className="text-slate-900">Pagamento:</strong> {order.paymentMethod.toUpperCase()}
             </div>
-            <div className="text-slate-300">
-              <strong className="text-white">Envio:</strong> {order.deliveryMethod}
+            <div className="text-slate-700">
+              <strong className="text-slate-900">Envio:</strong> {order.deliveryMethod}
             </div>
-            <div className="text-slate-300">
-              <strong className="text-white">Prazo Estimado:</strong> {order.estimatedDelivery || '24h a 48h'}
+            <div className="text-slate-700">
+              <strong className="text-slate-900">Prazo Estimado:</strong> {order.estimatedDelivery || '24h a 48h'}
             </div>
-            <div className="text-slate-400 text-[11px] mt-2">
-              Para validar o seu pagamento, envie o SMS do M-Pesa / comprovativo bancário para o nosso WhatsApp oficial: <strong>{WHATSAPP_DISPLAY}</strong>.
+            <div className="text-slate-600 text-[11px] mt-2">
+              Para validar o seu pagamento, envie o SMS do M-Pesa / comprovativo bancário para o nosso WhatsApp oficial: <strong className="text-slate-900">{WHATSAPP_DISPLAY}</strong>.
             </div>
           </div>
         </div>
 
         {/* Items Table */}
-        <div className="border-t border-slate-800 pt-6">
-          <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-4">
+        <div className="border-t border-slate-200 pt-6">
+          <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider mb-4">
             Artigos Encomendados
           </h4>
-          <div className="divide-y divide-slate-800/60">
+          <div className="divide-y divide-slate-200">
             {order.items.map((item) => (
               <div
                 key={item.product.id}
@@ -174,16 +171,16 @@ export const OrderConfirmationPage: React.FC = () => {
                   <img
                     src={item.product.images[0]}
                     alt={item.product.name}
-                    className="w-12 h-12 rounded-xl object-cover bg-slate-950 border border-slate-800"
+                    className="w-12 h-12 rounded-xl object-cover bg-slate-50 border border-slate-200"
                   />
                   <div>
-                    <h5 className="font-bold text-white">{item.product.name}</h5>
+                    <h5 className="font-bold text-slate-900">{item.product.name}</h5>
                     <span className="text-slate-500 text-[11px]">
                       {item.quantity} unidade(s) x {formatMZN(item.product.price)}
                     </span>
                   </div>
                 </div>
-                <span className="font-bold text-white">
+                <span className="font-bold text-slate-900">
                   {formatMZN(item.product.price * item.quantity)}
                 </span>
               </div>
@@ -192,24 +189,24 @@ export const OrderConfirmationPage: React.FC = () => {
         </div>
 
         {/* Totals */}
-        <div className="border-t border-slate-800 pt-4 space-y-2 text-xs">
-          <div className="flex justify-between text-slate-400">
+        <div className="border-t border-slate-200 pt-4 space-y-2 text-xs">
+          <div className="flex justify-between text-slate-600">
             <span>Subtotal:</span>
-            <span>{formatMZN(order.subtotal)}</span>
+            <span className="font-medium text-slate-800">{formatMZN(order.subtotal)}</span>
           </div>
           {order.discountAmount > 0 && (
-            <div className="flex justify-between text-red-400">
+            <div className="flex justify-between text-rose-600 font-medium">
               <span>Desconto:</span>
               <span>-{formatMZN(order.discountAmount)}</span>
             </div>
           )}
-          <div className="flex justify-between text-slate-400">
+          <div className="flex justify-between text-slate-600">
             <span>Portes de Envio:</span>
-            <span>{order.shippingFee === 0 ? 'Grátis' : formatMZN(order.shippingFee)}</span>
+            <span className="font-medium text-slate-800">{order.shippingFee === 0 ? 'Grátis' : formatMZN(order.shippingFee)}</span>
           </div>
-          <div className="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
+          <div className="flex justify-between text-base font-black text-slate-900 pt-2 border-t border-slate-200">
             <span>Total da Factura:</span>
-            <span className="text-xl text-blue-400">{formatMZN(order.total)}</span>
+            <span className="text-xl text-blue-700">{formatMZN(order.total)}</span>
           </div>
         </div>
       </div>
@@ -217,7 +214,7 @@ export const OrderConfirmationPage: React.FC = () => {
       <div className="text-center">
         <button
           onClick={() => setCurrentPage('shop')}
-          className="text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1 mx-auto"
+          className="text-xs text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1 mx-auto"
         >
           <span>Continuar a Navegar na Loja</span>
           <ArrowRight className="w-3.5 h-3.5" />

@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
 import {
   Search,
-  Package,
-  Truck,
   CheckCircle2,
-  Clock,
   ShieldCheck,
-  MapPin,
-  ExternalLink,
   MessageCircle,
 } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
-import { formatMZN, WHATSAPP_DISPLAY, formatDate } from '../utils/formatters';
+import { formatMZN, WHATSAPP_DISPLAY, WHATSAPP_PHONE_NUMBER, formatDate } from '../utils/formatters';
 import { Order, OrderStatus } from '../types';
 
 export const OrderTrackingPage: React.FC = () => {
   const { orders } = useStore();
 
-  const [searchQuery, setSearchQuery] = useState('GZ-84920'); // prefilled with sample order
+  const [searchQuery, setSearchQuery] = useState('GZ-84920');
   const [foundOrder, setFoundOrder] = useState<Order | null>(
     orders.find((o) => o.id === 'GZ-84920') || orders[0] || null
   );
@@ -87,14 +82,14 @@ export const OrderTrackingPage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
       {/* Header */}
       <div className="text-center max-w-xl mx-auto space-y-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-blue-400">
+        <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
           Serviço de Logística Moçambique
         </span>
-        <h1 className="text-2xl sm:text-3xl font-black text-white">
+        <h1 className="text-2xl sm:text-3xl font-black text-slate-900">
           Rastreamento de Encomendas em Tempo Real
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400">
-          Insira o código da encomenda (Ex: <strong>GZ-84920</strong>) ou o seu número de telemóvel para verificar o estado da entrega.
+        <p className="text-xs sm:text-sm text-slate-600">
+          Insira o código da encomenda (Ex: <strong className="text-slate-900">GZ-84920</strong>) ou o seu número de telemóvel para verificar o estado da entrega.
         </p>
       </div>
 
@@ -107,13 +102,13 @@ export const OrderTrackingPage: React.FC = () => {
             placeholder="Ex: GZ-84920 ou 84 312 9940"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 outline-none focus:border-blue-500 font-mono"
+            className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white border border-slate-300 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-blue-600 font-mono shadow-sm"
           />
           <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
         </div>
         <button
           type="submit"
-          className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-lg shadow-blue-600/30 transition-colors flex-shrink-0"
+          className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md shadow-blue-600/20 transition-colors flex-shrink-0"
         >
           Rastrear
         </button>
@@ -121,45 +116,45 @@ export const OrderTrackingPage: React.FC = () => {
 
       {/* Tracking Results */}
       {searched && foundOrder ? (
-        <div className="rounded-3xl bg-slate-900/60 border border-slate-800 p-6 sm:p-8 space-y-8 animate-in fade-in">
+        <div className="rounded-3xl bg-white border border-slate-200 shadow-sm p-6 sm:p-8 space-y-8 animate-in fade-in">
           {/* Top Info Banner */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
             <div>
-              <div className="text-[11px] text-slate-400 font-medium">
+              <div className="text-[11px] text-slate-500 font-medium">
                 Código de Rastreamento:
               </div>
-              <div className="text-2xl font-black text-white font-mono flex items-center gap-2">
+              <div className="text-2xl font-black text-slate-900 font-mono flex items-center gap-2">
                 <span>#{foundOrder.id}</span>
-                <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2.5 py-0.5 rounded-full uppercase">
+                <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full uppercase">
                   {foundOrder.status.replace('_', ' ')}
                 </span>
               </div>
             </div>
 
-            <div className="text-xs text-slate-400 sm:text-right">
+            <div className="text-xs text-slate-600 sm:text-right space-y-0.5">
               <div>
-                Data de Criação: <strong className="text-white">{formatDate(foundOrder.createdAt)}</strong>
+                Data de Criação: <strong className="text-slate-900">{formatDate(foundOrder.createdAt)}</strong>
               </div>
               <div>
-                Destino: <strong className="text-white">{foundOrder.city}, {foundOrder.province}</strong>
+                Destino: <strong className="text-slate-900">{foundOrder.city}, {foundOrder.province}</strong>
               </div>
               <div>
-                Previsão de Chegada: <strong className="text-blue-400">{foundOrder.estimatedDelivery || 'Hoje / 24h'}</strong>
+                Previsão de Chegada: <strong className="text-blue-700">{foundOrder.estimatedDelivery || 'Hoje / 24h'}</strong>
               </div>
             </div>
           </div>
 
           {/* Interactive Steps Timeline */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-6">
               Progresso do Envio em Moçambique:
             </h3>
 
             <div className="relative">
               {/* Line connector */}
-              <div className="hidden sm:block absolute top-1/2 left-0 right-0 h-1 bg-slate-800 -translate-y-1/2 z-0" />
+              <div className="hidden sm:block absolute top-5 left-0 right-0 h-1 bg-slate-200 z-0" />
               <div
-                className="hidden sm:block absolute top-1/2 left-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 -translate-y-1/2 z-0 transition-all duration-700"
+                className="hidden sm:block absolute top-5 left-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 z-0 transition-all duration-700"
                 style={{
                   width: `${(currentStepIndex / (steps.length - 1)) * 100}%`,
                 }}
@@ -178,8 +173,8 @@ export const OrderTrackingPage: React.FC = () => {
                       <div
                         className={`w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-xs transition-all ${
                           isCompleted
-                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-4 ring-blue-950'
-                            : 'bg-slate-950 border border-slate-800 text-slate-500'
+                            ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-4 ring-blue-50'
+                            : 'bg-slate-50 border border-slate-200 text-slate-400'
                         }`}
                       >
                         {isCompleted ? <CheckCircle2 className="w-5 h-5" /> : idx + 1}
@@ -188,12 +183,12 @@ export const OrderTrackingPage: React.FC = () => {
                       <div>
                         <div
                           className={`text-xs font-bold ${
-                            isCurrent ? 'text-blue-400' : isCompleted ? 'text-white' : 'text-slate-500'
+                            isCurrent ? 'text-blue-700' : isCompleted ? 'text-slate-900' : 'text-slate-400'
                           }`}
                         >
                           {st.label}
                         </div>
-                        <div className="text-[10px] text-slate-400 max-w-[140px] sm:mx-auto mt-0.5">
+                        <div className="text-[10px] text-slate-500 max-w-[140px] sm:mx-auto mt-0.5">
                           {st.desc}
                         </div>
                       </div>
@@ -205,28 +200,28 @@ export const OrderTrackingPage: React.FC = () => {
           </div>
 
           {/* Items in this Order */}
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
-            <h4 className="text-xs font-bold text-white mb-3">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <h4 className="text-xs font-bold text-slate-900 mb-3">
               Itens desta encomenda:
             </h4>
             <div className="space-y-2">
               {foundOrder.items.map((item) => (
                 <div
                   key={item.product.id}
-                  className="flex items-center justify-between text-xs text-slate-300"
+                  className="flex items-center justify-between text-xs text-slate-700"
                 >
                   <div className="flex items-center gap-2">
                     <img
                       src={item.product.images[0]}
                       alt={item.product.name}
-                      className="w-8 h-8 rounded-lg object-cover bg-slate-900"
+                      className="w-8 h-8 rounded-lg object-cover bg-white border border-slate-200"
                     />
-                    <span className="font-semibold text-white truncate max-w-xs">
+                    <span className="font-semibold text-slate-900 truncate max-w-xs">
                       {item.product.name}
                     </span>
                     <span className="text-slate-500">x{item.quantity}</span>
                   </div>
-                  <span className="font-bold text-white">
+                  <span className="font-bold text-slate-900">
                     {formatMZN(item.product.price * item.quantity)}
                   </span>
                 </div>
@@ -235,16 +230,16 @@ export const OrderTrackingPage: React.FC = () => {
           </div>
 
           {/* Direct WhatsApp check */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800 text-xs text-slate-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200 text-xs text-slate-600">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
               <span>Precisa de falar com o estafeta ou alterar a morada?</span>
             </div>
             <a
-              href={`https://wa.me/258849900110?text=Ol%C3%A1%20GADGETSZONE!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20encomenda%20%23${foundOrder.id}`}
+              href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=Ol%C3%A1%20GADGETSZONE!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20encomenda%20%23${foundOrder.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5"
+              className="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1.5"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Falar com o Suporte da Logística: {WHATSAPP_DISPLAY}</span>
@@ -252,9 +247,9 @@ export const OrderTrackingPage: React.FC = () => {
           </div>
         </div>
       ) : searched ? (
-        <div className="p-8 text-center rounded-3xl bg-slate-900/50 border border-slate-800">
-          <p className="text-sm text-slate-300">
-            Nenhuma encomenda encontrada com o código <strong>"{searchQuery}"</strong>.
+        <div className="p-8 text-center rounded-3xl bg-slate-50 border border-slate-200">
+          <p className="text-sm text-slate-800">
+            Nenhuma encomenda encontrada com o código <strong>&ldquo;{searchQuery}&rdquo;</strong>.
           </p>
           <p className="text-xs text-slate-500 mt-1">
             Certifique-se de que inseriu o código com o formato <strong>#GZ-XXXXX</strong> ou contacte o nosso WhatsApp para assistência manual.

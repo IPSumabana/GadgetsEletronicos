@@ -6,15 +6,12 @@ import {
   Search,
   X,
   Filter,
-  Check,
   RotateCcw,
-  Sparkles,
 } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/common/ProductCard';
 import { CATEGORIES } from '../data/mockData';
 import { formatMZN } from '../utils/formatters';
-import { ProductCategory } from '../types';
 
 export const ShopPage: React.FC = () => {
   const {
@@ -28,7 +25,6 @@ export const ShopPage: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'horizontal'>('grid');
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  // Filter States
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [maxPrice, setMaxPrice] = useState<number>(300000);
   const [onlyInStock, setOnlyInStock] = useState(false);
@@ -38,21 +34,18 @@ export const ShopPage: React.FC = () => {
     'recent' | 'price-asc' | 'price-desc' | 'rating' | 'popular'
   >('popular');
 
-  // Extract all unique brands
   const allBrands = useMemo(() => {
     const brandsSet = new Set<string>();
     products.forEach((p) => brandsSet.add(p.brand));
     return Array.from(brandsSet).sort();
   }, [products]);
 
-  // Handle Brand Toggle
   const toggleBrand = (brand: string) => {
     setSelectedBrands((prev) =>
       prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   };
 
-  // Reset Filters
   const handleResetFilters = () => {
     setSelectedCategory('all');
     setSelectedBrands([]);
@@ -64,15 +57,12 @@ export const ShopPage: React.FC = () => {
     setSortBy('popular');
   };
 
-  // Filter and Sort Products
   const filteredProducts = useMemo(() => {
     return products
       .filter((product) => {
-        // Category
         if (selectedCategory !== 'all' && product.category !== selectedCategory) {
           return false;
         }
-        // Search
         if (searchQuery.trim()) {
           const q = searchQuery.toLowerCase();
           const matchName = product.name.toLowerCase().includes(q);
@@ -81,23 +71,18 @@ export const ShopPage: React.FC = () => {
           const matchSku = product.sku.toLowerCase().includes(q);
           if (!matchName && !matchBrand && !matchCat && !matchSku) return false;
         }
-        // Brand
         if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) {
           return false;
         }
-        // Price
         if (product.price > maxPrice) {
           return false;
         }
-        // Stock
         if (onlyInStock && product.stock <= 0) {
           return false;
         }
-        // Deals
         if (onlyDeals && !product.discountPercentage && !product.isFlashDeal) {
           return false;
         }
-        // Rating
         if (minRating > 0 && product.rating < minRating) {
           return false;
         }
@@ -108,7 +93,7 @@ export const ShopPage: React.FC = () => {
         if (sortBy === 'price-desc') return b.price - a.price;
         if (sortBy === 'rating') return b.rating - a.rating;
         if (sortBy === 'popular') return b.reviewCount - a.reviewCount;
-        return 0; // recent/default
+        return 0;
       });
   }, [
     products,
@@ -133,16 +118,15 @@ export const ShopPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* Header & Breadcrumb */}
       <div className="mb-6">
-        <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
+        <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
           <span>Início</span>
           <span>/</span>
-          <span className="text-white font-medium">Catálogo de Produtos</span>
+          <span className="text-slate-900 font-medium">Catálogo de Produtos</span>
           {selectedCategory !== 'all' && (
             <>
               <span>/</span>
-              <span className="text-blue-400 font-semibold capitalize">
+              <span className="text-blue-600 font-semibold capitalize">
                 {CATEGORIES.find((c) => c.id === selectedCategory)?.name || selectedCategory}
               </span>
             </>
@@ -151,24 +135,22 @@ export const ShopPage: React.FC = () => {
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black text-white">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900">
               Loja de Tecnologia & Gadgets
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               {filteredProducts.length} equipamentos encontrados em Meticais (MZN).
             </p>
           </div>
 
-          {/* Controls: Search, View Mode, Mobile Filter Trigger */}
           <div className="flex items-center gap-3">
-            {/* View Mode */}
-            <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1">
+            <div className="flex items-center bg-slate-100 border border-slate-200 rounded-xl p-1">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded-lg transition-colors ${
                   viewMode === 'grid'
-                    ? 'bg-blue-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-white text-blue-600 shadow-xs'
+                    : 'text-slate-500 hover:text-slate-900'
                 }`}
                 title="Grelha"
               >
@@ -178,8 +160,8 @@ export const ShopPage: React.FC = () => {
                 onClick={() => setViewMode('horizontal')}
                 className={`p-1.5 rounded-lg transition-colors ${
                   viewMode === 'horizontal'
-                    ? 'bg-blue-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-white text-blue-600 shadow-xs'
+                    : 'text-slate-500 hover:text-slate-900'
                 }`}
                 title="Lista"
               >
@@ -187,11 +169,10 @@ export const ShopPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Sort Dropdown */}
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-200 outline-none cursor-pointer"
+              className="px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold text-slate-800 outline-none cursor-pointer"
             >
               <option value="popular">Mais Populares</option>
               <option value="recent">Mais Recentes</option>
@@ -200,12 +181,11 @@ export const ShopPage: React.FC = () => {
               <option value="rating">Melhor Avaliação</option>
             </select>
 
-            {/* Mobile Filter Button */}
             <button
               onClick={() => setMobileFilterOpen(true)}
-              className="lg:hidden px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold text-slate-200 flex items-center gap-1.5"
+              className="lg:hidden px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold text-slate-800 flex items-center gap-1.5"
             >
-              <Filter className="w-4 h-4 text-blue-400" />
+              <Filter className="w-4 h-4 text-blue-600" />
               <span>Filtros</span>
               {activeFiltersCount > 0 && (
                 <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">
@@ -217,19 +197,17 @@ export const ShopPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Layout: Sidebar Filters + Products Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* Sidebar Filters Desktop */}
-        <aside className="hidden lg:block lg:col-span-1 space-y-6 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-6 h-fit sticky top-24">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-blue-400" />
+        <aside className="hidden lg:block lg:col-span-1 space-y-6 bg-slate-50 border border-slate-200 rounded-3xl p-6 h-fit sticky top-24">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <SlidersHorizontal className="w-4 h-4 text-blue-600" />
               <span>Filtros Avançados</span>
             </h3>
             {activeFiltersCount > 0 && (
               <button
                 onClick={handleResetFilters}
-                className="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 transition-colors"
+                className="text-xs text-rose-600 hover:text-rose-700 flex items-center gap-1 transition-colors font-semibold"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Limpar</span>
@@ -237,9 +215,8 @@ export const ShopPage: React.FC = () => {
             )}
           </div>
 
-          {/* Categorias */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
               Categorias
             </h4>
             <div className="space-y-1">
@@ -247,12 +224,12 @@ export const ShopPage: React.FC = () => {
                 onClick={() => setSelectedCategory('all')}
                 className={`w-full flex items-center justify-between p-2 rounded-xl text-xs font-medium transition-colors ${
                   selectedCategory === 'all'
-                    ? 'bg-blue-600 text-white font-bold'
-                    : 'text-slate-300 hover:bg-slate-800'
+                    ? 'bg-blue-600 text-white font-bold shadow-xs'
+                    : 'text-slate-700 hover:bg-white'
                 }`}
               >
                 <span>Todas as Categorias</span>
-                <span className="text-[10px] opacity-75">{products.length}</span>
+                <span className="text-[10px] opacity-80">{products.length}</span>
               </button>
 
               {CATEGORIES.map((cat) => (
@@ -261,24 +238,23 @@ export const ShopPage: React.FC = () => {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`w-full flex items-center justify-between p-2 rounded-xl text-xs font-medium transition-colors ${
                     selectedCategory === cat.id
-                      ? 'bg-blue-600 text-white font-bold'
-                      : 'text-slate-300 hover:bg-slate-800'
+                      ? 'bg-blue-600 text-white font-bold shadow-xs'
+                      : 'text-slate-700 hover:bg-white'
                   }`}
                 >
                   <span className="truncate text-left">{cat.name}</span>
-                  <span className="text-[10px] opacity-75">{cat.productCount}</span>
+                  <span className="text-[10px] opacity-80">{cat.productCount}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Intervalo de Preços em MZN */}
-          <div className="pt-4 border-t border-slate-800">
+          <div className="pt-4 border-t border-slate-200">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 Preço Máximo
               </h4>
-              <span className="text-xs font-bold text-blue-400">
+              <span className="text-xs font-bold text-blue-600">
                 {formatMZN(maxPrice)}
               </span>
             </div>
@@ -297,16 +273,15 @@ export const ShopPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Marcas */}
-          <div className="pt-4 border-t border-slate-800">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+          <div className="pt-4 border-t border-slate-200">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
               Marcas
             </h4>
             <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
               {allBrands.map((brand) => (
                 <label
                   key={brand}
-                  className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-800/60 cursor-pointer text-xs text-slate-300"
+                  className="flex items-center justify-between p-1.5 rounded-lg hover:bg-white cursor-pointer text-xs text-slate-700"
                 >
                   <span className="flex items-center gap-2">
                     <input
@@ -325,9 +300,8 @@ export const ShopPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Toggles (Apenas Stock / Promoções) */}
-          <div className="pt-4 border-t border-slate-800 space-y-2">
-            <label className="flex items-center justify-between p-2 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-300 cursor-pointer">
+          <div className="pt-4 border-t border-slate-200 space-y-2">
+            <label className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 cursor-pointer font-medium">
               <span>Apenas em Stock</span>
               <input
                 type="checkbox"
@@ -337,7 +311,7 @@ export const ShopPage: React.FC = () => {
               />
             </label>
 
-            <label className="flex items-center justify-between p-2 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-300 cursor-pointer">
+            <label className="flex items-center justify-between p-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 cursor-pointer font-medium">
               <span>Em Promoção</span>
               <input
                 type="checkbox"
@@ -349,14 +323,12 @@ export const ShopPage: React.FC = () => {
           </div>
         </aside>
 
-        {/* Product Grid Area */}
         <div className="lg:col-span-3">
-          {/* Active Filter Pills */}
           {activeFiltersCount > 0 && (
-            <div className="flex flex-wrap items-center gap-2 mb-4 p-3 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <span className="text-xs text-slate-400 font-semibold">Filtros:</span>
+            <div className="flex flex-wrap items-center gap-2 mb-4 p-3 rounded-2xl bg-slate-50 border border-slate-200">
+              <span className="text-xs text-slate-600 font-semibold">Filtros:</span>
               {selectedCategory !== 'all' && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 text-xs font-medium">
                   <span>Cat: {selectedCategory}</span>
                   <button onClick={() => setSelectedCategory('all')}>
                     <X className="w-3 h-3" />
@@ -366,7 +338,7 @@ export const ShopPage: React.FC = () => {
               {selectedBrands.map((brand) => (
                 <span
                   key={brand}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple-600/20 text-purple-400 border border-purple-500/30 text-xs"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 text-xs font-medium"
                 >
                   <span>{brand}</span>
                   <button onClick={() => toggleBrand(brand)}>
@@ -375,7 +347,7 @@ export const ShopPage: React.FC = () => {
                 </span>
               ))}
               {onlyInStock && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-medium">
                   <span>Em Stock</span>
                   <button onClick={() => setOnlyInStock(false)}>
                     <X className="w-3 h-3" />
@@ -383,7 +355,7 @@ export const ShopPage: React.FC = () => {
                 </span>
               )}
               {onlyDeals && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-600/20 text-red-400 border border-red-500/30 text-xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 text-xs font-medium">
                   <span>Promoções</span>
                   <button onClick={() => setOnlyDeals(false)}>
                     <X className="w-3 h-3" />
@@ -392,7 +364,7 @@ export const ShopPage: React.FC = () => {
               )}
               <button
                 onClick={handleResetFilters}
-                className="text-xs text-slate-400 hover:text-white underline ml-auto"
+                className="text-xs text-slate-600 hover:text-slate-900 underline ml-auto font-medium"
               >
                 Limpar Todos
               </button>
@@ -416,19 +388,19 @@ export const ShopPage: React.FC = () => {
               ))}
             </div>
           ) : (
-            <div className="p-12 text-center rounded-3xl bg-slate-900/50 border border-slate-800">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400">
+            <div className="p-12 text-center rounded-3xl bg-slate-50 border border-slate-200">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-slate-400">
                 <Search className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">
+              <h3 className="text-lg font-bold text-slate-900 mb-1">
                 Nenhum produto corresponde aos filtros
               </h3>
-              <p className="text-xs text-slate-400 max-w-sm mx-auto mb-6">
+              <p className="text-xs text-slate-500 max-w-sm mx-auto mb-6">
                 Tente ajustar o preço máximo, remover marcas selecionadas ou pesquisar por outro termo.
               </p>
               <button
                 onClick={handleResetFilters}
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-lg shadow-blue-600/30"
+                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-600/20"
               >
                 Reiniciar Todos os Filtros
               </button>
@@ -437,23 +409,21 @@ export const ShopPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Filters Modal Drawer */}
       {mobileFilterOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-slate-950/80 backdrop-blur-sm">
-          <div className="w-full max-w-xs bg-slate-900 border-l border-slate-800 h-full p-6 overflow-y-auto space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <h3 className="font-bold text-white text-base">Filtros da Loja</h3>
+        <div className="fixed inset-0 z-50 flex justify-end bg-slate-900/50 backdrop-blur-sm">
+          <div className="w-full max-w-xs bg-white border-l border-slate-200 h-full p-6 overflow-y-auto space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-200">
+              <h3 className="font-bold text-slate-900 text-base">Filtros da Loja</h3>
               <button
                 onClick={() => setMobileFilterOpen(false)}
-                className="p-2 rounded-xl bg-slate-800 text-slate-300"
+                className="p-2 rounded-xl bg-slate-100 text-slate-600"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Categorias */}
             <div>
-              <h4 className="text-xs font-bold uppercase text-slate-400 mb-2">
+              <h4 className="text-xs font-bold uppercase text-slate-500 mb-2">
                 Categorias
               </h4>
               <div className="space-y-1">
@@ -462,7 +432,7 @@ export const ShopPage: React.FC = () => {
                   className={`w-full text-left p-2 rounded-lg text-xs ${
                     selectedCategory === 'all'
                       ? 'bg-blue-600 text-white font-bold'
-                      : 'text-slate-300'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
                   Todas as Categorias
@@ -474,7 +444,7 @@ export const ShopPage: React.FC = () => {
                     className={`w-full text-left p-2 rounded-lg text-xs ${
                       selectedCategory === c.id
                         ? 'bg-blue-600 text-white font-bold'
-                        : 'text-slate-300'
+                        : 'text-slate-700 hover:bg-slate-50'
                     }`}
                   >
                     {c.name}

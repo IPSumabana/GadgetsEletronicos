@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Clock, Sparkles, ArrowRight } from 'lucide-react';
+import { Flame, Clock } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { ProductCard } from '../components/common/ProductCard';
 
 export const FlashDealsPage: React.FC = () => {
-  const { products, setCurrentPage } = useStore();
+  const { products } = useStore();
 
   const [timeLeft, setTimeLeft] = useState({
     hours: 14,
@@ -30,49 +30,46 @@ export const FlashDealsPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
-      {/* Header Banner */}
-      <div className="rounded-3xl bg-gradient-to-r from-red-950/60 via-slate-900 to-slate-950 border border-red-900/50 p-6 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
+      <div className="rounded-3xl bg-gradient-to-r from-rose-50 via-white to-orange-50 border border-rose-200 p-6 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-sm">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-red-300 bg-red-950 border border-red-800">
-            <Flame className="w-3.5 h-3.5 animate-bounce text-red-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-red-700 bg-red-100 border border-red-200">
+            <Flame className="w-3.5 h-3.5 animate-bounce text-red-600" />
             <span>Preços Especiais por Tempo Limitado</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-white">
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
             Promoções & Ofertas Relâmpago
           </h1>
 
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
             Aproveite descontos exclusivos em Meticais (MZN) em MacBooks, PC Gaming, consolas e periféricos. Stock limitado em Maputo.
           </p>
         </div>
 
-        {/* Big Countdown Box */}
-        <div className="p-4 rounded-2xl bg-slate-950/80 border border-red-900/40 text-center flex-shrink-0">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-center gap-1">
-            <Clock className="w-3.5 h-3.5 text-red-400" />
+        <div className="p-4 rounded-2xl bg-white border border-rose-200 text-center flex-shrink-0 shadow-xs">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2 flex items-center justify-center gap-1">
+            <Clock className="w-3.5 h-3.5 text-red-600" />
             <span>As ofertas encerram em:</span>
           </div>
-          <div className="flex items-center justify-center gap-2 font-mono font-black text-xl sm:text-2xl text-white">
-            <div className="bg-slate-900 px-3 py-2 rounded-xl border border-slate-800">
+          <div className="flex items-center justify-center gap-2 font-mono font-black text-xl sm:text-2xl text-slate-900">
+            <div className="bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
               {String(timeLeft.hours).padStart(2, '0')}
               <span className="block text-[9px] font-sans font-medium text-slate-500">Horas</span>
             </div>
             <span>:</span>
-            <div className="bg-slate-900 px-3 py-2 rounded-xl border border-slate-800">
+            <div className="bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
               {String(timeLeft.minutes).padStart(2, '0')}
               <span className="block text-[9px] font-sans font-medium text-slate-500">Min</span>
             </div>
             <span>:</span>
-            <div className="bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 text-red-400">
+            <div className="bg-red-50 px-3 py-2 rounded-xl border border-red-200 text-red-600">
               {String(timeLeft.seconds).padStart(2, '0')}
-              <span className="block text-[9px] font-sans font-medium text-slate-500">Seg</span>
+              <span className="block text-[9px] font-sans font-medium text-red-500">Seg</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Grid of Deals */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {dealProducts.map((p) => (
           <ProductCard key={p.id} product={p} />

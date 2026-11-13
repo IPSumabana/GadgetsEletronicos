@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, ChevronUp, Search, MessageCircle } from 'lucide-react';
-import { WHATSAPP_DISPLAY } from '../utils/formatters';
+import { ChevronDown, ChevronUp, Search, MessageCircle } from 'lucide-react';
+import { WHATSAPP_DISPLAY, WHATSAPP_PHONE_NUMBER } from '../utils/formatters';
 
 interface FAQItem {
   q: string;
@@ -22,7 +22,7 @@ export const FAQPage: React.FC = () => {
     {
       cat: 'pagamento',
       q: 'Como confirmo o pagamento via M-Pesa ou e-Mola?',
-      a: 'Após transferir o valor para a nossa conta comercial (M-Pesa: 84 990 0110 ou e-Mola: 86 550 0220), basta clicar no botão de confirmação pelo WhatsApp e encaminhar a mensagem SMS recebida com o ID da sua encomenda #GZ-XXXX.',
+      a: 'Após transferir o valor para a nossa conta comercial (M-Pesa ou e-Mola), basta clicar no botão de confirmação pelo WhatsApp e encaminhar a mensagem SMS recebida com o ID da sua encomenda #GZ-XXXX.',
     },
     {
       cat: 'entregas',
@@ -63,13 +63,13 @@ export const FAQPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-10">
       <div className="text-center max-w-xl mx-auto space-y-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-blue-400">
+        <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
           Tire as Suas Dúvidas
         </span>
-        <h1 className="text-3xl sm:text-4xl font-black text-white">
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
           Perguntas Frequentes (FAQ)
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400">
+        <p className="text-xs sm:text-sm text-slate-600">
           Respostas claras sobre compras, métodos de pagamento em Meticais, garantias e envios para todas as províncias.
         </p>
       </div>
@@ -81,7 +81,7 @@ export const FAQPage: React.FC = () => {
           placeholder="Pesquisar por M-Pesa, garantia, entregas..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 outline-none focus:border-blue-500"
+          className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-slate-300 text-xs text-slate-900 placeholder-slate-400 outline-none focus:border-blue-600 shadow-sm"
         />
         <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
       </div>
@@ -100,7 +100,7 @@ export const FAQPage: React.FC = () => {
             className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeCat === tab.id
                 ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white'
+                : 'bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             {tab.label}
@@ -115,21 +115,21 @@ export const FAQPage: React.FC = () => {
           return (
             <div
               key={idx}
-              className="rounded-2xl bg-slate-900/60 border border-slate-800 overflow-hidden transition-all"
+              className="rounded-2xl bg-white border border-slate-200 overflow-hidden transition-all shadow-sm"
             >
               <button
                 onClick={() => setOpenIdx(isOpen ? null : idx)}
-                className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left font-bold text-white text-xs sm:text-sm hover:text-blue-400 transition-colors"
+                className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left font-bold text-slate-900 text-xs sm:text-sm hover:text-blue-600 transition-colors"
               >
                 <span>{faq.q}</span>
                 {isOpen ? (
-                  <ChevronUp className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                  <ChevronUp className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 )}
               </button>
               {isOpen && (
-                <div className="px-4 sm:px-5 pb-5 text-xs text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3 animate-in fade-in">
+                <div className="px-4 sm:px-5 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3 animate-in fade-in">
                   {faq.a}
                 </div>
               )}
@@ -139,18 +139,18 @@ export const FAQPage: React.FC = () => {
       </div>
 
       {/* WhatsApp Help Box */}
-      <div className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800 text-center space-y-3">
-        <h3 className="font-bold text-white text-sm">
+      <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 text-center space-y-3">
+        <h3 className="font-bold text-slate-900 text-sm">
           Ainda tem alguma dúvida técnica ou questão específica?
         </h3>
-        <p className="text-xs text-slate-400 max-w-sm mx-auto">
-          Fale diretamente com os nossos consultores pelo WhatsApp: <strong>{WHATSAPP_DISPLAY}</strong>
+        <p className="text-xs text-slate-600 max-w-sm mx-auto">
+          Fale diretamente com os nossos consultores pelo WhatsApp: <strong className="text-slate-900">{WHATSAPP_DISPLAY}</strong>
         </p>
         <a
-          href="https://wa.me/258849900110"
+          href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-all"
         >
           <MessageCircle className="w-4 h-4" />
           <span>Falar com Consultor Agora</span>
