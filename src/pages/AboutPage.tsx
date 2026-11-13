@@ -73,7 +73,7 @@ export const AboutPage: React.FC = () => {
           </div>
           <h3 className="font-bold text-slate-900 text-sm">Entregas Rápidas</h3>
           <p className="text-xs text-slate-600">
-            Estafetas próprios na Grande Maputo e parcerias logísticas para todas as 11 províncias.
+            Estafetas próprios com entregas rápidas no próprio dia ou em até 24h na Cidade de Maputo e Matola.
           </p>
         </div>
 

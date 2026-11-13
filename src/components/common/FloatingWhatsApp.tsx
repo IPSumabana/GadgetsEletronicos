@@ -51,19 +51,19 @@ export const FloatingWhatsApp: React.FC = () => {
           </div>
 
           <p className="my-3 text-slate-600 leading-relaxed text-[11px]">
-            Olá! Em que podemos ajudar hoje? Pergunte sobre disponibilidade de stock, entregas para a sua província ou encomende directamente:
+            Olá! Em que podemos ajudar hoje? Pergunte sobre disponibilidade de stock, entregas em Maputo e Matola ou encomende directamente:
           </p>
 
           <div className="space-y-1.5 mb-3">
             <button
               onClick={() =>
                 handleQuickQuestion(
-                  'Olá! Gostaria de saber os prazos e taxas de entrega para a minha província.'
+                  'Olá! Gostaria de saber os prazos e taxas de entrega em Maputo e Matola.'
                 )
               }
               className="w-full text-left p-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[11px] text-slate-700 transition-colors"
             >
-              📍 Prazos e envio para as províncias
+              📍 Prazos e entregas em Maputo e Matola
             </button>
             <button
               onClick={() =>

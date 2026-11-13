@@ -242,7 +242,7 @@ export const AccountPage: React.FC = () => {
               <span className="font-bold text-slate-900 text-sm">{currentUser.name}</span>
             </div>
             <div>
-              <span className="text-slate-500 block">Província:</span>
+              <span className="text-slate-500 block">Zona (Maputo / Matola):</span>
               <span className="font-medium text-slate-800">
                 {currentUser.address?.province || 'Maputo Cidade'}
               </span>

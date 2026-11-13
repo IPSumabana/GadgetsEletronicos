@@ -402,10 +402,10 @@ export const HomePage: React.FC = () => {
                 <Truck className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-slate-900 text-base mb-2">
-                Cobertura Nacional em Moçambique
+                Entregas em Maputo e Matola
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Entregas no próprio dia na Grande Maputo e envios diários seguros via transportadora para Beira, Nampula, Tete, Pemba e outras capitais.
+                Entregas rápidas no próprio dia ou em até 24h na Cidade de Maputo e Matola, com opção de levantamento gratuito na nossa loja.
               </p>
             </div>
           </div>

@@ -25,7 +25,7 @@ export const PoliciesPage: React.FC = () => {
         {[
           { id: 'garantia', label: 'Garantia Oficial 12M', icon: ShieldCheck },
           { id: 'devolucoes', label: 'Devoluções & Trocas', icon: RotateCcw },
-          { id: 'envios', label: 'Envios para Províncias', icon: Truck },
+          { id: 'envios', label: 'Entregas Maputo & Matola', icon: Truck },
           { id: 'privacidade', label: 'Privacidade & Dados', icon: Lock },
           { id: 'termos', label: 'Termos de Utilização', icon: FileText },
         ].map((tab) => {
@@ -85,16 +85,16 @@ export const PoliciesPage: React.FC = () => {
         {activeTab === 'envios' && (
           <div className="space-y-4">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
-              Prazos e Entregas em Moçambique
+              Prazos e Entregas em Maputo e Matola
             </h2>
             <p>
-              Operamos com uma rede logística estruturada para cobrir todo o território moçambicano:
+              Operamos com estafetas próprios dedicados para garantir entregas rápidas, seguras e com acompanhamento directo em Maputo e Matola:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-slate-600">
-              <li><strong className="text-slate-900">Maputo Cidade e Matola:</strong> Entregas rápidas no próprio dia ou em até 24 horas úteis por estafeta próprio.</li>
-              <li><strong className="text-slate-900">Sul (Gaza e Inhambane):</strong> 2 a 3 dias úteis por transportadora credenciada.</li>
-              <li><strong className="text-slate-900">Centro (Sofala / Beira, Manica, Tete, Zambézia):</strong> 2 a 4 dias úteis via transporte rodoviário ou aéreo.</li>
-              <li><strong className="text-slate-900">Norte (Nampula, Cabo Delgado / Pemba, Niassa / Lichinga):</strong> 3 a 5 dias úteis com rastreamento por SMS.</li>
+              <li><strong className="text-slate-900">Maputo Cidade (Polana, Central, Sommerschield, Alto Maé, Costa do Sol, Zimpeto):</strong> Entregas rápidas no próprio dia (para pedidos confirmados até às 13h00) ou em até 24 horas úteis.</li>
+              <li><strong className="text-slate-900">Matola (Matola Rio, Machava, Liberdade, Tsalala, Fomento, Matola Gare):</strong> Entregas seguras em 24 a 48 horas úteis com contacto prévio do estafeta.</li>
+              <li><strong className="text-slate-900">Levantamento na Loja (Polana Cimento):</strong> Gratuito e disponível em cerca de 2 horas após confirmação na Av. 24 de Julho nº 1420.</li>
+              <li><strong className="text-slate-900">Portes Grátis:</strong> Oferta de entrega gratuita em Maputo e Matola para encomendas iguais ou superiores a 50.000 MT.</li>
             </ul>
           </div>
         )}

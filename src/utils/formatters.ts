@@ -24,7 +24,7 @@ export function generateWhatsAppOrderLink(
   price: number,
   sku?: string
 ): string {
-  const message = `Olá GADGETSZONE! Gostaria de obter informações e encomendar o seguinte equipamento:\n\n📦 *Produto:* ${productName}\n💰 *Preço:* ${formatMZN(price)}${sku ? `\n🏷️ *SKU:* ${sku}` : ''}\n\nPodem confirmar a disponibilidade e prazo de entrega para a minha zona em Moçambique? Obrigado!`;
+  const message = `Olá GADGETSZONE! Gostaria de obter informações e encomendar o seguinte equipamento:\n\n📦 *Produto:* ${productName}\n💰 *Preço:* ${formatMZN(price)}${sku ? `\n🏷️ *SKU:* ${sku}` : ''}\n\nPodem confirmar a disponibilidade e prazo de entrega em Maputo e Matola? Obrigado!`;
   return `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
@@ -38,7 +38,7 @@ export function generateWhatsAppOrderConfirmationLink(
   province: string,
   paymentMethod: string
 ): string {
-  const message = `Olá GADGETSZONE! Acabei de submeter a encomenda *#${orderId}* no vosso website.\n\n👤 *Cliente:* ${customerName}\n📍 *Província / Entrega:* ${province}\n💳 *Método de Pagamento:* ${paymentMethod}\n💵 *Total:* ${formatMZN(total)}\n\nEnvio esta mensagem para confirmar o pedido e enviar o comprovativo. Obrigado!`;
+  const message = `Olá GADGETSZONE! Acabei de submeter a encomenda *#${orderId}* no vosso website.\n\n👤 *Cliente:* ${customerName}\n📍 *Zona / Entrega:* ${province}\n💳 *Método de Pagamento:* ${paymentMethod}\n💵 *Total:* ${formatMZN(total)}\n\nEnvio esta mensagem para confirmar o pedido e enviar o comprovativo. Obrigado!`;
   return `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 

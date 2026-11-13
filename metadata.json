@@ -1,6 +1,6 @@
 {
   "name": "GADGETSZONE - Loja Online de Tecnologia Moçambique",
-  "description": "Loja online premium de tecnologia em Moçambique: Laptops, PC Gaming, Smartphones, Consolas, Câmaras, Monitores e Gadgets com entregas em Maputo e todo o país em Meticais (MZN).",
+  "description": "Loja online premium de tecnologia em Moçambique: Laptops, PC Gaming, Smartphones, Consolas, Câmaras, Monitores e Gadgets com entregas em Maputo e Matola em Meticais (MZN).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

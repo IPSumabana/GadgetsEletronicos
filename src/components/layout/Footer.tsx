@@ -284,7 +284,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setCurrentPage('policies')}
                   className="hover:text-blue-600 transition-colors text-left"
                 >
-                  Envios para as Províncias
+                  Entregas em Maputo e Matola
                 </button>
               </li>
               <li>

@@ -26,8 +26,8 @@ export const FAQPage: React.FC = () => {
     },
     {
       cat: 'entregas',
-      q: 'Como funcionam as entregas nas províncias fora de Maputo?',
-      a: 'Realizamos envios diários seguros para Sofala (Beira), Nampula, Tete, Zambézia, Inhambane, Gaza, Cabo Delgado e Niassa através de transportadoras terrestres e carga aérea expresso. As mercadorias viajam seguradas e fornecemos o código de guia de transporte.',
+      q: 'Quais as zonas onde fazem entregas?',
+      a: 'Realizamos entregas rápidas em toda a Cidade de Maputo (Polana, Central, Sommerschield, Costa do Sol, Alto Maé, Zimpeto, etc.) e na Matola (Matola Rio, Machava, Liberdade, Tsalala, Fomento e arredores), além de levantamento gratuito na nossa loja na Polana.',
     },
     {
       cat: 'entregas',
@@ -70,7 +70,7 @@ export const FAQPage: React.FC = () => {
           Perguntas Frequentes (FAQ)
         </h1>
         <p className="text-xs sm:text-sm text-slate-600">
-          Respostas claras sobre compras, métodos de pagamento em Meticais, garantias e envios para todas as províncias.
+          Respostas claras sobre compras, métodos de pagamento em Meticais, garantias e entregas em Maputo e Matola.
         </p>
       </div>
 
@@ -91,7 +91,7 @@ export const FAQPage: React.FC = () => {
         {[
           { id: 'all', label: 'Todas as Perguntas' },
           { id: 'pagamento', label: 'Pagamentos & M-Pesa' },
-          { id: 'entregas', label: 'Entregas & Províncias' },
+          { id: 'entregas', label: 'Entregas Maputo & Matola' },
           { id: 'garantia', label: 'Garantia & Assistência' },
         ].map((tab) => (
           <button

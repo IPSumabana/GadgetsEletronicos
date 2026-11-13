@@ -45,10 +45,8 @@ export const CheckoutPage: React.FC = () => {
   let shippingFee = 0;
   if (deliveryMethod === 'levantamento_loja') {
     shippingFee = 0;
-  } else if (deliveryMethod === 'express_maputo') {
-    shippingFee = provinceData.expressAvailable ? (cartSubtotal >= 50000 ? 0 : 350) : 600;
   } else {
-    shippingFee = provinceData.standardFee;
+    shippingFee = cartSubtotal >= 50000 ? 0 : provinceData.standardFee;
   }
 
   const grandTotal = Math.max(0, cartSubtotal - discountAmount + shippingFee);
@@ -189,13 +187,13 @@ export const CheckoutPage: React.FC = () => {
               <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold">
                 2
               </span>
-              <span>Morada de Entrega em Moçambique</span>
+              <span>Morada de Entrega (Maputo & Matola)</span>
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-semibold text-slate-700 block mb-1">
-                  Província *
+                  Zona (Maputo / Matola) *
                 </label>
                 <select
                   value={province}
@@ -212,12 +210,12 @@ export const CheckoutPage: React.FC = () => {
 
               <div>
                 <label className="text-xs font-semibold text-slate-700 block mb-1">
-                  Cidade / Bairro *
+                  Bairro / Cidade *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Polana, Matola Rio, Beira..."
+                  placeholder="Ex: Polana, Sommerschield, Matola Rio..."
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-xs text-slate-900 placeholder-slate-400 outline-none focus:border-blue-600 focus:bg-white"
@@ -289,37 +287,7 @@ export const CheckoutPage: React.FC = () => {
                   </div>
                 </div>
                 <span className="text-xs font-bold text-blue-700">
-                  {cartSubtotal >= 50000 ? 'Grátis' : '350 MT'}
-                </span>
-              </label>
-
-              <label
-                className={`flex items-start justify-between p-4 rounded-2xl border cursor-pointer transition-all ${
-                  deliveryMethod === 'standard_mozambique'
-                    ? 'bg-blue-50 border-blue-500'
-                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
-                }`}
-              >
-                <div className="flex items-start gap-3">
-                  <input
-                    type="radio"
-                    name="delivery"
-                    value="standard_mozambique"
-                    checked={deliveryMethod === 'standard_mozambique'}
-                    onChange={() => setDeliveryMethod('standard_mozambique')}
-                    className="accent-blue-600 mt-1"
-                  />
-                  <div>
-                    <span className="font-bold text-slate-900 text-xs block">
-                      Transportadora Nacional (Para Todas as Províncias)
-                    </span>
-                    <span className="text-[11px] text-slate-600">
-                      Envio seguro terrestre/aéreo com código de rastreamento SMS.
-                    </span>
-                  </div>
-                </div>
-                <span className="text-xs font-bold text-blue-700">
-                  {formatMZN(provinceData.standardFee)}
+                  {cartSubtotal >= 50000 ? 'Grátis' : formatMZN(provinceData.standardFee)}
                 </span>
               </label>
 

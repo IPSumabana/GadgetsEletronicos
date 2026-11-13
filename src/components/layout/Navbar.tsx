@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
             </span>
             <span className="font-medium">
-              🇲🇿 Entregas Rápidas em Maputo, Matola e em todas as províncias de Moçambique!
+              🇲🇿 Entregas Rápidas em Maputo e Matola!
             </span>
             <span className="hidden md:inline text-white font-semibold">
               | Portes grátis para compras acima de 5.000 MT

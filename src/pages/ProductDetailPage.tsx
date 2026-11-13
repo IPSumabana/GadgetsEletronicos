@@ -240,7 +240,7 @@ export const ProductDetailPage: React.FC = () => {
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
                 <Truck className="w-4 h-4 text-blue-600" />
-                <span>Calcular Entrega por Província (Moçambique):</span>
+                <span>Calcular Entrega em Maputo e Matola:</span>
               </span>
             </div>
 

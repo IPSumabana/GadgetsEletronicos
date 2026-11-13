@@ -50,7 +50,7 @@ export const OrderTrackingPage: React.FC = () => {
     {
       status: 'em_transito',
       label: '4. Em Trânsito / Estafeta',
-      desc: 'A caminho da sua morada ou na transportadora provincial.',
+      desc: 'A caminho da sua morada em Maputo ou Matola.',
     },
     {
       status: 'entregue',

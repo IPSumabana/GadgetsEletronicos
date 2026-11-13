@@ -12,14 +12,14 @@ export const SEOHead: React.FC = () => {
   useEffect(() => {
     let title = 'GADGETSZONE | Loja Online de Tecnologia em Moçambique';
     let desc =
-      'A sua loja tecnológica de referência em Moçambique. Laptops, PC Gaming, Smartphones, PS5, Monitores e Gadgets em Meticais (MZN) com entregas em Maputo e todo o país.';
+      'A sua loja tecnológica de referência em Moçambique. Laptops, PC Gaming, Smartphones, PS5, Monitores e Gadgets em Meticais (MZN) com entregas em Maputo e Matola.';
 
     if (currentPage === 'product-detail' && product) {
       title = `${product.name} | GADGETSZONE Moçambique`;
-      desc = `${product.shortDescription} Compre em Meticais (MZN) com garantia oficial de ${product.warrantyMonths} meses em Moçambique.`;
+      desc = `${product.shortDescription} Compre em Meticais (MZN) com garantia oficial de ${product.warrantyMonths} meses em Maputo e Matola.`;
     } else if (currentPage === 'shop') {
       title = 'Loja de Tecnologia & Gadgets | GADGETSZONE Moçambique';
-      desc = 'Catálogo completo de informática e eletrónicos de alta performance em Maputo e todo o território moçambicano.';
+      desc = 'Catálogo completo de informática e eletrónicos de alta performance com entregas em Maputo e Matola.';
     } else if (currentPage === 'flash-deals') {
       title = 'Ofertas Relâmpago & Promoções Tech | GADGETSZONE';
       desc = 'Descontos imperdíveis em computadores, telemóveis e consolas em Meticais com entrega rápida.';
